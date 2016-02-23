@@ -1,8 +1,11 @@
-//* jshint ignore:start */
+/* jshint ignore:start */
 //
 //
 //// Navigation
 //
+
+// var albumsTmpl = _.template(abumTemplate);
+
 var nav = "";
 _.each(albumData, function(item){
   nav +=
@@ -77,27 +80,35 @@ _.each(albumData, function(item){
 //
 //// Nav
 //
-$('ul.navigation').find('a').on("click", function (event) {
+$('.navigation').on("click","a", function (event) {
     event.preventDefault();
     console.log("CLICK!");
-    var selectedPage = "." + $(this).attr('rel');
-    $(selectedPage).siblings('section').removeClass('active');
-    $(selectedPage).addClass('active');
-    console.log("selectedPage is ", selectedPage)
-  });
+    var selectedAlbum = $(this).attr('rel');
+    $("section").removeClass("active");
+    $(".singleAlbum").addClass("active");
+    setPhotoDisplay(selectedAlbum);
+    console.log("selectedAlbum is ", selectedAlbum)
 
+    $(this).siblings().removeClass('activeTab');
+    $(this).addClass('activeTab');
 
+    console.log("this is ", $(this).siblings());
+});
 //
 //
 ////// Album Covers click to Album
 //
 var selectedAlbum ="";
 $(".albumCover").on("click", function(el) {
-el.preventDefault();
-$("section").removeClass("active");
-$(".singleAlbum").addClass("active");
-selectedAlbum = $(this).attr("rel");
-setPhotoDisplay(selectedAlbum);
+  el.preventDefault();
+  $("section").removeClass("active");
+  $(".singleAlbum").addClass("active");
+  selectedAlbum = $(this).attr("rel");
+  setPhotoDisplay(selectedAlbum);
+
+  var navSelect = "a[rel=" + selectedAlbum + "]";
+  $(navSelect).addClass("activeTab");
+
 });
 
 var getAlbumPhotos = function (albumChoice) {
@@ -109,15 +120,15 @@ return photoArray[0].photoBank;
 
 var setPhotoDisplay = function (albumSelect) {
 var photoDisplay = "";
-_.each(getAlbumPhotos(albumSelect), function (item) {
-photoDisplay +=
-"<div class='photoBox' rel ='"
-+ item.rel
-+ "'>"
-+ "<img src='"
-+ item.photoThumb
-+ "' />"
-+ "</div>";
+  _.each(getAlbumPhotos(albumSelect), function (item) {
+    photoDisplay +=
+    "<div class='photoBox' rel ='"
+    + item.rel
+    + "'>"
+    + "<img src='"
+    + item.photoThumb
+    + "' />"
+    + "</div>";
 });
 $(".photoGrid").html(photoDisplay);
 };

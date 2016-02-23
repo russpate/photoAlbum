@@ -7,7 +7,6 @@
   position: relative;
   text-decoration: none;
   color: black;
-  margin-bottom: 5px;
   transition: .2s all;
   overflow: hidden;
   background-color: rgba(238, 238, 238, 0.7); }
@@ -54,7 +53,8 @@
   transition: .2s all; }
   .photoBack:hover {
     background: #eee;
-    color: #020202; }
+    color: #020202;
+    cursor: pointer; }
 
 .photoLightBox img {
   width: 100%; }
@@ -72,8 +72,9 @@
   padding: 0px 5px;
   transition: .2s all; }
   .photoBox:hover {
-    transform: translate3d(0px, -2%, 3em) scale(0.95);
-    opacity: .5; }
+    transform: scale(0.95);
+    opacity: .5;
+    cursor: pointer; }
   .photoBox img {
     width: 100%; }
 
@@ -120,3 +121,6 @@ nav {
     margin-right: 35px; }
     nav a:hover {
       color: black; }
+
+.activeTab {
+  color: blue; }

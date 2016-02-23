@@ -11,8 +11,9 @@
     padding: 0px 5px;
     transition:.2s all;
     &:hover{
-      transform: translate3d(0px, -2%, 3em) scale(.95);
+      transform: scale(.95);
       opacity:.5;
+      cursor:pointer;
     }
     img{
       width:100%;
