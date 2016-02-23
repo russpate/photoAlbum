@@ -4,3 +4,17 @@
 .album h1{
   padding:50px 0;
 }
+.photoBox {
+    width: 33.3%;
+    display: inline-block;
+    overflow:hidden;
+    padding: 0px 5px;
+    transition:.2s all;
+    &:hover{
+      transform: translate3d(0px, -2%, 3em) scale(.95);
+      opacity:.5;
+    }
+    img{
+      width:100%;
+    }
+}

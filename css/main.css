@@ -46,8 +46,6 @@
   width: 49.7%; }
 
 .photoBack {
-  position: absolute;
-  top: 0;
   padding: 20px;
   font-weight: 600;
   background: #020202;
@@ -58,11 +56,26 @@
     background: #eee;
     color: #020202; }
 
+.photoLightBox img {
+  width: 100%; }
+
 .photoThumb {
   width: 49%; }
 
 .album h1 {
   padding: 50px 0; }
+
+.photoBox {
+  width: 33.3%;
+  display: inline-block;
+  overflow: hidden;
+  padding: 0px 5px;
+  transition: .2s all; }
+  .photoBox:hover {
+    transform: translate3d(0px, -2%, 3em) scale(0.95);
+    opacity: .5; }
+  .photoBox img {
+    width: 100%; }
 
 * {
   padding: 0;
@@ -95,9 +108,8 @@ section {
   transition: .2s all; }
 
 nav {
-  width: 85%;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 5% 0;
   text-align: center; }
   nav li {
     display: inline; }

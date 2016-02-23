@@ -41,6 +41,10 @@ $('.mainContent').html(albumCovers);
 //
 var photoGridHtml = "";
 _.each(albumData, function(item){
+  photoGridHtml +=
+  "<div class='hero'><h1>"
+  + item.albumTitle
+  + "</h1></div>";
   _.each(item.photoBank, function (el) {
     photoGridHtml +=
     "<a rel='"
@@ -73,12 +77,16 @@ _.each(albumData, function(item){
 //
 //// Nav
 //
-$('.navigation').on("click", function (event) {
+$('ul.navigation').find('a').on("click", function (event) {
     event.preventDefault();
+    console.log("CLICK!");
     var selectedPage = "." + $(this).attr('rel');
     $(selectedPage).siblings('section').removeClass('active');
     $(selectedPage).addClass('active');
+    console.log("selectedPage is ", selectedPage)
   });
+
+
 //
 //
 ////// Album Covers click to Album
@@ -89,7 +97,7 @@ el.preventDefault();
 $("section").removeClass("active");
 $(".singleAlbum").addClass("active");
 selectedAlbum = $(this).attr("rel");
-setPhotoDisplay(selectedAlbum)
+setPhotoDisplay(selectedAlbum);
 });
 
 var getAlbumPhotos = function (albumChoice) {
@@ -101,9 +109,9 @@ return photoArray[0].photoBank;
 
 var setPhotoDisplay = function (albumSelect) {
 var photoDisplay = "";
-_.each(getAlbumPhotos(selectedAlbum), function (item) {
+_.each(getAlbumPhotos(albumSelect), function (item) {
 photoDisplay +=
-"<div class='photo' rel ='"
+"<div class='photoBox' rel ='"
 + item.rel
 + "'>"
 + "<img src='"
@@ -117,12 +125,12 @@ $(".photoGrid").html(photoDisplay);
 //
 //// Select a photo from an albumContent
 //
-$('.photoGrid').on("click",'a', function(el) {
+$('.photoGrid').on("click",'img', function(el) {
   el.preventDefault();
   $("section").removeClass("active");
-  $(".photoView").addClass("active");
-  var selectedPhoto = $(this).attr("rel");
-  var selectedFull = selectedPhoto.replace(/thumb\.png/gi,"full.jpeg");
+  $(".lightBox").addClass("active");
+  var selectedPhoto = $(this).attr("src");
+  var selectedFull = selectedPhoto.replace(/-thumb\.jpg/gi,".jpg");
   setPhotoFull(selectedFull);
 });
 
@@ -132,5 +140,14 @@ var setPhotoFull = function (selectFullPhoto) {
     "<div class='photoLightBox'><img src='"
     + selectFullPhoto
     + "' /></div>";
-  $(".photoView").html(photoFull);
+  $(".photoView").html(fullPhoto);
 };
+//
+//
+//// back to Album
+//
+$(".photoBack").on("click", function(el) {
+  el.preventDefault();
+  $("section").removeClass("active");
+  $(".singleAlbum").addClass("active");
+});
