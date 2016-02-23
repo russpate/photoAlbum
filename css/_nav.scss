@@ -1,15 +1,18 @@
 nav{
   width:85%;
   margin:0 auto;
+  padding:20px 0;
+  text-align:center;
   li{
     display:inline;
   }
   a{
     text-decoration:none;
-    color:blue;
+    color:gray;
     font-weight:600;
+    margin-right:35px;
     &:hover{
-      color:green;
+      color:black;
     }
   }
 }

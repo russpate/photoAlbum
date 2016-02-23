@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 
 $(document).ready(function () {
 //
@@ -26,40 +27,9 @@ $('.albums').append(albumCovers);
 //
 //
 var albumView = "";
-var photoThumbs = "";
-var photoFull = "";
 _.each(albumData, function(item){
   // This function inside the function allows access to the
   // the photoBank.
-  _.each(item.photoBank, function(photo){
-  photoThumbs +=
-  // allPhotos is a look at all the photos from inside the album
-  // you should be able to click a photo thumbnail and it opens
-  // the full photo.
-  "<div class='allPhotos photo toggle' href='#'>"
-    + "<a rel='"
-    + photo.rel
-    + "' class='photoThumb' href='#'>"
-    +"<img src='"
-    + photo.photoThumb
-    + "' /></a>"// photoThumb + link to full photo
-    +"</div>";
-  });
-  _.each(item.photoBank, function(photo){
-    // From this view you should only see ONE photo with a link
-    // back to the album it belongs to.
-    photoFull +=
-    "<div class='toggle "
-    + photo.class
-    + "' href='#'>"
-    + "<a rel='allPhotos' class='photoBack' href='#'>back to "
-    + item.albumTitle
-    + "</a>"
-    + "<img src='"
-    + photo.photoFull
-    + "' />"
-    + "</div>";
-  });
   albumView +=
   "<section class='album "
   + item.class
@@ -67,11 +37,31 @@ _.each(albumData, function(item){
   + "<h1 class='albumTitle'>"
   + item.albumTitle
   + "</h1>"
-  + "</section>";
+  // start photos
+  _.each(item.photoBank, function (el) {
+    albumView += "<div class='allPhotos photo toggle show' href='#'>"
+    + "<a rel='"
+    + el.rel
+    + "' class='photoThumb' href='#'>"
+    +"<img src='"
+    + el.photoThumb
+    + "' /></a>"// photoThumb + link to full photo
+    +"</div>"
+    + "<div class='"
+    + el.class
+    + " toggle' href='#'>"
+    + "<a rel='allPhotos' class='photoBack' href='#'>back to "
+    + item.albumTitle
+    + "</a>"
+    + "<img src='"
+    + el.photoFull
+    + "' />"
+    + "</div>"
+    // end photo
+  });
+  albumView += "</section>";
 });
-$(".albums").after(albumView);
-$(".albumTitle").after(photoThumbs);
-$(".allPhotos").after(photoFull);
+$(".container").append(albumView);
 
 
 ////// Click Events
@@ -92,6 +82,7 @@ $('body').on("click",'.albumCover', function (event) {
     event.preventDefault();
     //rel attr connects the two elements
     var selectedPhoto = "." + $(this).attr('rel');
+    console.log(selectedPhoto);
     //This is the thing that is getting effected by click
     $(selectedPhoto).siblings('section').removeClass('active');
     $(selectedPhoto).addClass('active');

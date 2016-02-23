@@ -1,127 +1,140 @@
-$(document).ready(function () {
+//* jshint ignore:start */
 //
 //
-//// Homepage Album Covers
+//// Navigation
+//
+var nav = "";
+_.each(albumData, function(item){
+  nav +=
+  "<li><a rel='"
+  + item.rel
+  + "' href='#'>"
+  + item.albumTitle
+  + "</a></li>";
+});
+$('.navigation').html(nav);
+//
+//
+////Album Covers Home Page
+//
 var albumCovers = "";
 _.each(albumData, function(item){
-  albumCovers +=
-  "<a rel='"
-  + item.rel
-  + "' class='albumCover' href='#'>"
-  + "<div>"
-  + "<h2>"
-  + item.albumTitle
-  + "</h2>"
-  + "<img src='"
-  + item.albumCover
-  + "' />"
-  + "</div>"
-  + "</a>";
+  albumCovers +=
+  "<a rel='"
+  + item.rel
+  + "' class='albumCover' href='#'>"
+  + "<div>"
+  + "<h2>"
+  + item.albumTitle
+  + "</h2>"
+  + "<img src='"
+  + item.albumCover
+  + "' />"
+  + "</div>"
+  + "</a>";
 });
-$('.albums').append(albumCovers);
+$('.mainContent').html(albumCovers);
 //
 //
 //// Album view and into photo
 //
 //
-var albumView = "";
-var photoThumbs = ""
-var photoFull = "";
+var photoGridHtml = "";
 _.each(albumData, function(item){
-  // This function inside the function allows access to the
-  // the photoBank.
-  photoThumbs = "<div class='allPhotos photo toggle' href='#'>";
-  _.each(item.photoBank, function(photo){
-  photoThumbs +=
-  // allPhotos is a look at all the photos from inside the album
-  // you should be able to click a photo thumbnail and it opens
-  // the full photo.
+  _.each(item.photoBank, function (el) {
+    photoGridHtml +=
+    "<a rel='"
+    + el.rel
+    + "' class='photoThumb' href='#'>"
+    +"<img src='"
+    + el.photoThumb
+    + "' /></a>"// photoThumb + link to full photo
+    +"</div>";
+    });
+  });
+$(".photoGrid").html(photoGridHtml);
 
-    // photoThumb + link to full photo
-     "<a rel='"
-    + photo.rel
-    + "' class='photoThumb' href='#' data-album='" + item.class + "'>"
-    +"<img src='"
-    + photo.photoThumb
-    + "' /></a>";
-  });
-  _.each(item.photoBank, function(photo){
-    // From this view you should only see ONE photo with a link
-    // back to the album it belongs to.
-    photoFull +=
-    "<div class='toggle "
-    + photo.class
-    + "' href='#'>"
-    + "<a rel='allPhotos' class='photoBack' href='#'>back to "
-    + item.albumTitle
-    + "</a>"
-    + "<img src='"
-    + photo.photoFull
-    + "' />"
-    + "</div>";
-  });
-  albumView +=
-  "<section class='album "
-  + item.class
-  + "'>"
-  + "<h1 class='albumTitle'>"
-  + item.albumTitle
-  + "</h1>"
-  + "</section>";
-});
 
-photoThumbs += "</div>";
-$(".albums").after(albumView);
-$(".albumTitle").after(photoThumbs);
-$(".allPhotos").after(photoFull);
-
-// reset after adding each album
-photoThumbs = "";
-
+var photoViewHtml = "";
+_.each(albumData, function(item){
+  _.each(item.photoBank, function (el) {
+    photoViewHtml +=
+      "<div class='photo'>"
+      + "<img src='"
+      + el.photoFull
+      + "' />"
+      + "</div>";
+    });
+  });
+  $(".photoView").html(photoViewHtml);
 
 ////// Click Events
 //
-// selects albums from the homepage
 //
-$('body li').find('a').on("click", function (event) {
-    event.preventDefault();
-    var selectedPage = "." + $(this).attr('rel');
-    $(selectedPage).siblings('section').removeClass('active');
-    $(selectedPage).addClass('active');
-  });
+//// Nav
 //
-// from the albumCover Homepage in to the photo
+$('.navigation').on("click", function (event) {
+    event.preventDefault();
+    var selectedPage = "." + $(this).attr('rel');
+    $(selectedPage).siblings('section').removeClass('active');
+    $(selectedPage).addClass('active');
+  });
 //
-//This is the thing you are cicking
-$('body').on("click",'.albumCover', function (event) {
-    event.preventDefault();
-    //rel attr connects the two elements
-    var selectedPhoto = "." + $(this).attr('rel');
-    //This is the thing that is getting effected by click
-    $(selectedPhoto).siblings('section').removeClass('active');
-    $(selectedPhoto).addClass('active');
-  });
-// from the album in to the photo
 //
-//This is the thing you are cicking
-$('body').on("click",'.photoThumb', function (event) {
-    event.preventDefault();
-    //rel attr connects the two elements
-    var selectedPhoto = "." + $(this).attr('rel');
-    //This is the thing that is getting effected by click
-    $(selectedPhoto).siblings('.photo').removeClass('show');
-    $(selectedPhoto).addClass('show');
-  });
-// from photo back to album
+////// Album Covers click to Album
 //
-//This is the thing you are cicking
-$('body').on("click",'.photoBack', function (event) {
-    event.preventDefault();
-    //rel attr connects the two elements
-    var selectedPhoto = "." + $(this).attr('rel');
-    //This is the thing that is getting effected by click
-    $(selectedPhoto).siblings('.photo').removeClass('show');
-    $(selectedPhoto).addClass('show');
-  });
+var selectedAlbum ="";
+$(".albumCover").on("click", function(el) {
+el.preventDefault();
+$("section").removeClass("active");
+$(".singleAlbum").addClass("active");
+selectedAlbum = $(this).attr("rel");
+setPhotoDisplay(selectedAlbum)
+});
 
-}); // $(document).ready
+var getAlbumPhotos = function (albumChoice) {
+var photoArray = albumData.filter(function (item) {
+  return item.albumRel === albumChoice;
+});
+return photoArray[0].photos;
+};
+
+var setPhotoDisplay = function (albumSelect) {
+var photoDisplay = "";
+_.each(getAlbumPhotos(selectedAlbum), function (item) {
+photoDisplay +=
+"<div class='photoDiv' rel ='"
++ item.rel
++ "'>"
++ "<img src='"
++ item.photoThumb
++ "'>"
++ "<p>"
++ item.photoName
++ "</p>"
++ "</div>";
+});
+$(".albumContent").html(photoDisplay);
+};
+//
+//
+//// Select a photo from an albumContent
+//
+$('.photoGrid').on("click",'a', function(el) {
+  el.preventDefault();
+  console.log("CLICK");
+  $("section").removeClass("active");
+  $(".photoView").addClass("active");
+  var selectedPhoto = $(this).attr("src");
+  var selectedFull = selectedPhoto.replace(/thumb\.png/gi,"full.jpeg");
+  setPhotoFull(selectedFull);
+});
+
+var setPhotoFull = function (selectFullPhoto) {
+  var fullPhoto = "";
+    fullPhoto +=
+    "<div class='photoFullDiv'><img src='"
+    + selectFullPhoto
+    + "' /></div>";
+  $(".photoFullView").html(photoFull);
+};

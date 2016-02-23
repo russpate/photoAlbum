@@ -5,13 +5,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" media="screen" charset="utf-8">
     <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,900,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/main.css">
-    <title>My Photo Album</title>
+    <title>Dynamic Photo Album</title>
   </head>
   <body>
     <header>
       <nav>
         <ul>
-          <li><a rel="albums" href="#">Home</a></li>
+          <li><a rel="albums" href="#">All Albums</a></li>
           <li><a rel="album-1" href="#">Black</a></li>
           <li><a rel="album-2" href="#">Green</a></li>
           <li><a rel="album-3" href="#">Yellow</a></li>
@@ -22,33 +22,16 @@
       </nav>
     </header>
     <div class="container">
-      <h1>Photo Albums</h1>
+      <div class="hero">
+        <h1>Photo Albums</h1>
+      </div>
       <section class="albums active">
       </section>
-      <!-- <section class="album album-1">
-        <h1>Album 1</h1>
-        <div class="allPhotos photo toggle show" href="#">
-          <a rel="photo-1" class="photoThumb" href="#"><img src="img/blue-1-thumb.jpg" /></a>
-        </div>
-        <div class="photo-1 photo toggle" href="#">
-          <a rel="allPhotos" class="photoBack" href="#">back to Album</a>
-          <img src="https://source.unsplash.com/category/nature/1200x700" />
-          </div>
-      </section> -->
-      <!-- <section class="album album-2">
-        <h1>Album 2</h1>
-      </section>
-      <section class="album album-3">
-        <h1>Album 3</h1>
-        <section rel="photo-1" class="photo-1">
-          photo 1
-        </section>
-      </section> -->
     </div>
     <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="js/albumData.js"></script>
-    <!-- <script type="text/javascript" src="js/main.js"></script> -->
-    <script type="text/javascript" src="js/mainRedux.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <!-- <script type="text/javascript" src="js/mainRedux.js"></script> -->
   </body>
 </html>

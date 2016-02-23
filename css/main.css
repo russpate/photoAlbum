@@ -2,9 +2,8 @@
   width: 100%; }
 
 .albumCover {
-  width: 48.7%;
+  width: 49.5%;
   display: inline-block;
-  margin-right: 8px;
   position: relative;
   text-decoration: none;
   color: black;
@@ -14,6 +13,8 @@
   background-color: rgba(238, 238, 238, 0.7); }
   .albumCover:hover {
     transform: translate3d(0px, -2%, 3em) scale(0.95); }
+  .albumCover:nth-child(even) {
+    margin-left: 5px; }
   .albumCover h2 {
     padding: 30%;
     text-align: center;
@@ -29,11 +30,39 @@
     top: 0;
     z-index: -1000; }
 
-.photo img {
-  width: 100%; }
+.hero h1 {
+  background-color: #333;
+  padding: 50px;
+  text-align: center;
+  margin: 10px 0;
+  color: white; }
+
+.photo {
+  width: 100%;
+  overflow: hidden;
+  position: relative; }
+
+.photoThumb img {
+  width: 49.7%; }
+
+.photoBack {
+  position: absolute;
+  top: 0;
+  padding: 20px;
+  font-weight: 600;
+  background: #020202;
+  color: #eee;
+  text-decoration: none;
+  transition: .2s all; }
+  .photoBack:hover {
+    background: #eee;
+    color: #020202; }
 
 .photoThumb {
   width: 49%; }
+
+.album h1 {
+  padding: 50px 0; }
 
 * {
   padding: 0;
@@ -67,12 +96,15 @@ section {
 
 nav {
   width: 85%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center; }
   nav li {
     display: inline; }
   nav a {
     text-decoration: none;
-    color: blue;
-    font-weight: 600; }
+    color: gray;
+    font-weight: 600;
+    margin-right: 35px; }
     nav a:hover {
-      color: green; }
+      color: black; }
