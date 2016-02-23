@@ -94,27 +94,24 @@ setPhotoDisplay(selectedAlbum)
 
 var getAlbumPhotos = function (albumChoice) {
 var photoArray = albumData.filter(function (item) {
-  return item.albumRel === albumChoice;
+  return item.rel === albumChoice;
 });
-return photoArray[0].photos;
+return photoArray[0].photoBank;
 };
 
 var setPhotoDisplay = function (albumSelect) {
 var photoDisplay = "";
 _.each(getAlbumPhotos(selectedAlbum), function (item) {
 photoDisplay +=
-"<div class='photoDiv' rel ='"
+"<div class='photo' rel ='"
 + item.rel
 + "'>"
 + "<img src='"
 + item.photoThumb
-+ "'>"
-+ "<p>"
-+ item.photoName
-+ "</p>"
++ "' />"
 + "</div>";
 });
-$(".albumContent").html(photoDisplay);
+$(".photoGrid").html(photoDisplay);
 };
 //
 //
@@ -122,10 +119,9 @@ $(".albumContent").html(photoDisplay);
 //
 $('.photoGrid').on("click",'a', function(el) {
   el.preventDefault();
-  console.log("CLICK");
   $("section").removeClass("active");
   $(".photoView").addClass("active");
-  var selectedPhoto = $(this).attr("src");
+  var selectedPhoto = $(this).attr("rel");
   var selectedFull = selectedPhoto.replace(/thumb\.png/gi,"full.jpeg");
   setPhotoFull(selectedFull);
 });
@@ -133,8 +129,8 @@ $('.photoGrid').on("click",'a', function(el) {
 var setPhotoFull = function (selectFullPhoto) {
   var fullPhoto = "";
     fullPhoto +=
-    "<div class='photoFullDiv'><img src='"
+    "<div class='photoLightBox'><img src='"
     + selectFullPhoto
     + "' /></div>";
-  $(".photoFullView").html(photoFull);
+  $(".photoView").html(photoFull);
 };
