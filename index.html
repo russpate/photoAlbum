@@ -9,29 +9,44 @@
   </head>
   <body>
     <header>
-      <nav>
-        <ul>
-          <li><a rel="albums" href="#">All Albums</a></li>
-          <li><a rel="album-1" href="#">Black</a></li>
-          <li><a rel="album-2" href="#">Green</a></li>
-          <li><a rel="album-3" href="#">Yellow</a></li>
-          <li><a rel="album-4" href="#">Purple</a></li>
-          <li><a rel="album-5" href="#">Blue</a></li>
-          <li><a rel="album-6" href="#">Red</a></li>
-        </ul>
-      </nav>
     </header>
     <div class="container">
       <div class="hero">
         <h1>Photo Albums</h1>
       </div>
-      <section class="albums active">
+      <section class="allAlbums active">
+        <div class="mainContent">
+          <a rel="album-1" class="albumCover" href="#"><div><h2>Black.</h2><img src="img/black-1-thumb.jpg"></div></a>
+          <a rel="album-2" class="albumCover" href="#"><div><h2>Green.</h2><img src="img/green-1-thumb.jpg"></div></a>
+        </div>
+      </section>
+      <section class="singleAlbum">
+        <nav>
+          <ul class="navigation">
+
+            <li><a rel="album-1" href="#">Black</a></li>
+            <li><a rel="album-2" href="#">Green</a></li>
+
+          </ul>
+        </nav>
+        <div class="photoGrid">
+            <a rel="photo-1" class="photoThumb" href="#"><img src="img/black-1-thumb.jpg"></a><a rel="photo-2" class="photoThumb" href="#"><img src="img/black-2-thumb.jpg"></a>
+        </div>
+      </section>
+      <section class="lightBox">
+        <div class="photoBack">back to Album</div>
+        <div class="photoView">
+          <div class="photo">
+          <img src="img/yellow-1.jpg">
+          </div>
+        </div>
       </section>
     </div>
     <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="js/albumData.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-    <!-- <script type="text/javascript" src="js/mainRedux.js"></script> -->
+    <script src="js/template.js" charset="utf-8"></script>
+    <!-- <script type="text/javascript" src="js/main.js"></script> -->
+    <script type="text/javascript" src="js/mainRedux.js"></script>
   </body>
 </html>

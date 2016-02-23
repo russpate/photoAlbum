@@ -1,113 +1,130 @@
 /* jshint ignore:start */
+//
+//
+//// Navigation
+//
 
-$(document).ready(function () {
+var photoGridTmpl = _.template(albumTemplate.photoGrid);
+var albumCoversTmpl = _.template(albumTemplate.albumCover);
+var navTmpl = _.template(albumTemplate.nav);
+var photoViewTmpl = _.template(albumTemplate.photoView);
+var photoDisplayTmpl = _.template(albumTemplate.photoDisplay);
+
+var nav = "";
+_.each(albumData, function(item){
+  nav += navTmpl(item);
+});
+$('.navigation').html(nav);
 //
 //
-//// Homepage Album Covers
+////Album Covers Home Page
+//
+
 var albumCovers = "";
 _.each(albumData, function(item){
-  albumCovers +=
-  "<a rel='"
-  + item.rel
-  + "' class='albumCover' href='#'>"
-  + "<div>"
-  + "<h2>"
-  + item.albumTitle
-  + "</h2>"
-  + "<img src='"
-  + item.albumCover
-  + "' />"
-  + "</div>"
-  + "</a>";
+  albumCovers += albumCoversTmpl(item);
 });
-$('.albums').append(albumCovers);
+$('.mainContent').html(albumCovers);
 //
 //
 //// Album view and into photo
 //
 //
-var albumView = "";
+var photoGridHtml = "";
 _.each(albumData, function(item){
-  // This function inside the function allows access to the
-  // the photoBank.
-  albumView +=
-  "<section class='album "
-  + item.class
-  + "'>"
-  + "<h1 class='albumTitle'>"
-  + item.albumTitle
-  + "</h1>"
-  // start photos
+  photoGridHtml +=
   _.each(item.photoBank, function (el) {
-    albumView += "<div class='allPhotos photo toggle show' href='#'>"
-    + "<a rel='"
-    + el.rel
-    + "' class='photoThumb' href='#'>"
-    +"<img src='"
-    + el.photoThumb
-    + "' /></a>"// photoThumb + link to full photo
-    +"</div>"
-    + "<div class='"
-    + el.class
-    + " toggle' href='#'>"
-    + "<a rel='allPhotos' class='photoBack' href='#'>back to "
-    + item.albumTitle
-    + "</a>"
-    + "<img src='"
-    + el.photoFull
-    + "' />"
-    + "</div>"
-    // end photo
+    photoGridHtml += photoGridTmpl(el);
+    });
   });
-  albumView += "</section>";
-});
-$(".container").append(albumView);
+$(".photoGrid").html(photoGridHtml);
 
+
+var photoViewHtml = "";
+_.each(albumData, function(item){
+  _.each(item.photoBank, function (el) {
+    photoViewHtml += photoViewTmpl(el);
+    });
+  });
+  $(".photoView").html(photoViewHtml);
 
 ////// Click Events
 //
-// selects albums from the homepage
 //
-$('body li').find('a').on("click", function (event) {
+//// Nav
+//
+$('.navigation').on("click","a", function (event) {
     event.preventDefault();
-    var selectedPage = "." + $(this).attr('rel');
-    $(selectedPage).siblings('section').removeClass('active');
-    $(selectedPage).addClass('active');
-  });
+    console.log("CLICK!");
+    var selectedAlbum = $(this).attr('rel');
+    $("section").removeClass("active");
+    $(".singleAlbum").addClass("active");
+    setPhotoDisplay(selectedAlbum);
+    console.log("selectedAlbum is ", selectedAlbum)
+    //
+    // $(this).siblings().removeClass('activeTab');
+    // $(this).addClass('activeTab');
+    //
+    // console.log("this is ", $(this).siblings());
+});
 //
-// from the albumCover Homepage in to the photo
 //
-//This is the thing you are cicking
-$('body').on("click",'.albumCover', function (event) {
-    event.preventDefault();
-    //rel attr connects the two elements
-    var selectedPhoto = "." + $(this).attr('rel');
-    console.log(selectedPhoto);
-    //This is the thing that is getting effected by click
-    $(selectedPhoto).siblings('section').removeClass('active');
-    $(selectedPhoto).addClass('active');
-  });
-// from the album in to the photo
+////// Album Covers click to Album
 //
-//This is the thing you are cicking
-$('body').on("click",'.photoThumb', function (event) {
-    event.preventDefault();
-    //rel attr connects the two elements
-    var selectedPhoto = "." + $(this).attr('rel');
-    //This is the thing that is getting effected by click
-    $(selectedPhoto).siblings('.photo').removeClass('show');
-    $(selectedPhoto).addClass('show');
-  });
-// from photo back to album
-//
-//This is the thing you are cicking
-$('body').on("click",'.photoBack', function (event) {
-    event.preventDefault();
-    //rel attr connects the two elements
-    var selectedPhoto = "." + $(this).attr('rel');
-    //This is the thing that is getting effected by click
-    $(selectedPhoto).siblings('.photo').removeClass('show');
-    $(selectedPhoto).addClass('show');
-  });
+var selectedAlbum ="";
+$(".albumCover").on("click", function(el) {
+  el.preventDefault();
+  $("section").removeClass("active");
+  $(".singleAlbum").addClass("active");
+  selectedAlbum = $(this).attr("rel");
+  setPhotoDisplay(selectedAlbum);
 
-}); // $(document).ready
+  var navSelect = "a[rel=" + selectedAlbum + "]";
+  $(navSelect).addClass("activeTab");
+
+});
+
+var getAlbumPhotos = function (albumChoice) {
+var photoArray = albumData.filter(function (item) {
+  return item.rel === albumChoice;
+});
+return photoArray[0].photoBank;
+};
+
+var setPhotoDisplay = function (albumSelect) {
+var photoDisplay = "";
+  _.each(getAlbumPhotos(albumSelect), function (item) {
+    photoDisplay += photoDisplayTmpl(item);
+});
+$(".photoGrid").html(photoDisplay);
+};
+//
+//
+//// Select a photo from an albumContent
+//
+$('.photoGrid').on("click",'img', function(el) {
+  el.preventDefault();
+  $("section").removeClass("active");
+  $(".lightBox").addClass("active");
+  var selectedPhoto = $(this).attr("src");
+  var selectedFull = selectedPhoto.replace(/-thumb\.jpg/gi,".jpg");
+  setPhotoFull(selectedFull);
+});
+
+var setPhotoFull = function (selectFullPhoto) {
+  var fullPhoto = "";
+    fullPhoto +=
+    "<div class='photoLightBox'><img src='"
+    + selectFullPhoto
+    + "' /></div>";
+  $(".photoView").html(fullPhoto);
+};
+//
+//
+//// back to Album
+//
+$(".photoBack").on("click", function(el) {
+  el.preventDefault();
+  $("section").removeClass("active");
+  $(".singleAlbum").addClass("active");
+});
