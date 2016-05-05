@@ -8,14 +8,17 @@ body{
   font-family: 'Work Sans', sans-serif;
   text-transform:uppercase;
 }
-.container{
-  width:85%;
-  margin:0 auto;
-}
 section{
   display:none;
   width:100%;
 }
+a{
+  text-decoration:none;
+  &:hover{
+    text-decoration:none;
+  }
+}
+
 .active{
   display:inline-block;
   transition:.2s all;
