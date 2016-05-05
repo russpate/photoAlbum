@@ -2,23 +2,28 @@
   width: 100%; }
 
 .albumCover {
-  width: 49.5%;
   display: inline-block;
   position: relative;
   text-decoration: none;
   color: black;
-  transition: .2s all;
+  transition: all .2s ease;
   overflow: hidden;
-  background-color: rgba(238, 238, 238, 0.7); }
+  background-color: rgba(238, 238, 238, 0.7);
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-bottom: 10px; }
   .albumCover:hover {
     transform: translate3d(0px, -2%, 3em) scale(0.95); }
-  .albumCover:nth-child(even) {
-    margin-left: 5px; }
   .albumCover h2 {
     padding: 30%;
     text-align: center;
     background-color: rgba(238, 238, 238, 0.7);
-    transition: .2s all; }
+    transition: .2s all;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 2.5rem; }
     .albumCover h2:hover {
       color: transparent;
       background-color: rgba(238, 238, 238, 0.1); }
@@ -27,14 +32,19 @@
     left: 0;
     width: 100%;
     top: 0;
-    z-index: -1000; }
+    z-index: -1000;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px; }
 
 .hero h1 {
   background-color: #333;
   padding: 50px;
   text-align: center;
   margin: 10px 0;
-  color: white; }
+  color: white;
+  font-weight: 700;
+  font-weight: 3rem; }
 
 .photo {
   width: 100%;
@@ -66,11 +76,11 @@
   padding: 50px 0; }
 
 .photoBox {
-  width: 33.3%;
   display: inline-block;
   overflow: hidden;
   padding: 0px 5px;
-  transition: .2s all; }
+  transition: .2s all;
+  margin-bottom: 10px; }
   .photoBox:hover {
     transform: scale(0.95);
     opacity: .5;
@@ -82,11 +92,14 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box; }
+  *:hover {
+    text-decoration: none; }
 
 body {
   background: #eee;
   font-family: 'Work Sans', sans-serif;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  font-weight: 600; }
 
 section {
   display: none;
@@ -96,6 +109,10 @@ a {
   text-decoration: none; }
   a:hover {
     text-decoration: none; }
+
+.container {
+  width: 85%;
+  margin: 0 auto; }
 
 .active {
   display: inline-block;

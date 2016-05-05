@@ -2,25 +2,29 @@
   width:100%;
 }
 .albumCover{
-  width: 49.5%;
   display: inline-block;
   position: relative;
   text-decoration:none;
   color:black;
-  transition:.2s all;
+  transition: all .2s ease;
   overflow:hidden;
   background-color:rgba(238, 238, 238, 0.7);
+  padding-top:10px;
+  padding-right:10px;
+  padding-left:10px;
+  margin-bottom:10px;
   &:hover{
     transform: translate3d(0px, -2%, 3em) scale(.95);
-  }
-  &:nth-child(even) {
-    margin-left: 5px;
   }
   h2{
     padding: 30%;
     text-align:center;
     background-color:rgba(238, 238, 238, 0.7);
     transition:.2s all;
+    margin-top:0;
+    margin-bottom:0;
+    font-weight:600;
+    font-size:2.5rem;
     &:hover{
       color:rgba(0,0,0,0);
       background-color:rgba(238, 238, 238, 0.1);
@@ -32,6 +36,9 @@
     width: 100%;
     top: 0;
     z-index: -1000;
+    padding-top:10px;
+    padding-right:10px;
+    padding-left:10px;
   }
 }
 .hero{
@@ -41,5 +48,7 @@
     text-align:center;
     margin:10px 0;
     color:white;
+    font-weight:700;
+    font-weight:3rem;
   }
 }

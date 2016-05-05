@@ -2,11 +2,15 @@
   padding:0;
   margin:0;
   box-sizing:border-box;
+  &:hover{
+    text-decoration:none;
+  }
 }
 body{
   background:#eee;
   font-family: 'Work Sans', sans-serif;
   text-transform:uppercase;
+  font-weight:600;
 }
 section{
   display:none;
@@ -18,7 +22,10 @@ a{
     text-decoration:none;
   }
 }
-
+.container{
+  width:85%;
+  margin:0 auto;
+}
 .active{
   display:inline-block;
   transition:.2s all;

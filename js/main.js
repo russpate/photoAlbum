@@ -125,6 +125,7 @@ var setPhotoFull = function (selectFullPhoto) {
 //
 $(".photoBack").on("click", function(el) {
   el.preventDefault();
+  console.log("back click")
   $("section").removeClass("active");
   $(".singleAlbum").addClass("active");
 });

@@ -5,11 +5,11 @@
   padding:50px 0;
 }
 .photoBox {
-    width: 33.3%;
     display: inline-block;
     overflow:hidden;
     padding: 0px 5px;
     transition:.2s all;
+    margin-bottom:10px;
     &:hover{
       transform: scale(.95);
       opacity:.5;

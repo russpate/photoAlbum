@@ -14,7 +14,7 @@ albumTemplate.photoGrid = [
 albumTemplate.albumCover = [
   "<a rel='",
   "<%= rel %>",
-   "' class='albumCover' href='#'>",
+   "' class='albumCover col-sm-6 col-xs-12' href='#'>",
   "<div>",
   "<h2>",
   "<%= albumTitle %>",
@@ -43,7 +43,7 @@ albumTemplate.photoView = [
 ].join("");
 
 albumTemplate.photoDisplay = [
-  "<div class='photoBox' rel ='",
+  "<div class='photoBox col-md-4 col-sm-6 col-xs-12' rel ='",
   "<%= rel %>",
   "'>",
   "<img src='",
