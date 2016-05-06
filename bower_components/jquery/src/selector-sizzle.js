@@ -1,10 +1,6 @@
 define( [
 	"./core",
-<<<<<<< HEAD
 	"../external/sizzle/dist/sizzle"
-=======
-	"sizzle"
->>>>>>> 91ff6ce268b677ddbdd9a857546da016024c8421
 ], function( jQuery, Sizzle ) {
 
 jQuery.find = Sizzle;

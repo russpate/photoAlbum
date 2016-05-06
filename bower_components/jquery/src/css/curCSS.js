@@ -12,7 +12,6 @@ function curCSS( elem, name, computed ) {
 		style = elem.style;
 
 	computed = computed || getStyles( elem );
-<<<<<<< HEAD
 	ret = computed ? computed.getPropertyValue( name ) || computed[ name ] : undefined;
 
 	// Support: Opera 12.1x only
@@ -21,20 +20,10 @@ function curCSS( elem, name, computed ) {
 	if ( ( ret === "" || ret === undefined ) && !jQuery.contains( elem.ownerDocument, elem ) ) {
 		ret = jQuery.style( elem, name );
 	}
-=======
->>>>>>> 91ff6ce268b677ddbdd9a857546da016024c8421
 
 	// Support: IE9
 	// getPropertyValue is only needed for .css('filter') (#12537)
 	if ( computed ) {
-<<<<<<< HEAD
-=======
-		ret = computed.getPropertyValue( name ) || computed[ name ];
-
-		if ( ret === "" && !jQuery.contains( elem.ownerDocument, elem ) ) {
-			ret = jQuery.style( elem, name );
-		}
->>>>>>> 91ff6ce268b677ddbdd9a857546da016024c8421
 
 		// A tribute to the "awesome hack by Dean Edwards"
 		// Android Browser returns percentage for some values,

@@ -38,7 +38,6 @@ var
 	rscriptTypeMasked = /^true\/(.*)/,
 	rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
 
-<<<<<<< HEAD
 // Manipulating tables requires a tbody
 function manipulationTarget( elem, content ) {
 	return jQuery.nodeName( elem, "table" ) &&
@@ -47,16 +46,6 @@ function manipulationTarget( elem, content ) {
 		elem.getElementsByTagName( "tbody" )[ 0 ] ||
 			elem.appendChild( elem.ownerDocument.createElement( "tbody" ) ) :
 		elem;
-=======
-function manipulationTarget( elem, content ) {
-	if ( jQuery.nodeName( elem, "table" ) &&
-		jQuery.nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ) {
-
-		return elem.getElementsByTagName( "tbody" )[ 0 ] || elem;
-	}
-
-	return elem;
->>>>>>> 91ff6ce268b677ddbdd9a857546da016024c8421
 }
 
 // Replace/restore the type attribute of script elements for safe DOM manipulation
