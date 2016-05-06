@@ -71,7 +71,11 @@ function on( elem, types, selector, data, fn, one ) {
 	if ( fn === false ) {
 		fn = returnFalse;
 	} else if ( !fn ) {
+<<<<<<< HEAD
 		return elem;
+=======
+		return this;
+>>>>>>> 91ff6ce268b677ddbdd9a857546da016024c8421
 	}
 
 	if ( one === 1 ) {

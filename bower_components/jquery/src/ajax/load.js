@@ -72,7 +72,11 @@ jQuery.fn.load = function( url, params, callback ) {
 		// If it fails, this function gets "jqXHR", "status", "error"
 		} ).always( callback && function( jqXHR, status ) {
 			self.each( function() {
+<<<<<<< HEAD
 				callback.apply( this, response || [ jqXHR.responseText, status, jqXHR ] );
+=======
+				callback.apply( self, response || [ jqXHR.responseText, status, jqXHR ] );
+>>>>>>> 91ff6ce268b677ddbdd9a857546da016024c8421
 			} );
 		} );
 	}

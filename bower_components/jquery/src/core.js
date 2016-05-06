@@ -223,7 +223,10 @@ jQuery.extend( {
 	},
 
 	isPlainObject: function( obj ) {
+<<<<<<< HEAD
 		var key;
+=======
+>>>>>>> 91ff6ce268b677ddbdd9a857546da016024c8421
 
 		// Not plain objects:
 		// - Any object or value whose internal [[Class]] property is not "[object Object]"
@@ -233,6 +236,7 @@ jQuery.extend( {
 			return false;
 		}
 
+<<<<<<< HEAD
 		// Not own constructor property must be Object
 		if ( obj.constructor &&
 				!hasOwn.call( obj, "constructor" ) &&
@@ -245,6 +249,16 @@ jQuery.extend( {
 		for ( key in obj ) {}
 
 		return key === undefined || hasOwn.call( obj, key );
+=======
+		if ( obj.constructor &&
+				!hasOwn.call( obj.constructor.prototype, "isPrototypeOf" ) ) {
+			return false;
+		}
+
+		// If the function hasn't returned already, we're confident that
+		// |obj| is a plain object, created by {} or constructed with new Object
+		return true;
+>>>>>>> 91ff6ce268b677ddbdd9a857546da016024c8421
 	},
 
 	isEmptyObject: function( obj ) {

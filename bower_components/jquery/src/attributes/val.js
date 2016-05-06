@@ -4,8 +4,12 @@ define( [
 	"../core/init"
 ], function( jQuery, support ) {
 
+<<<<<<< HEAD
 var rreturn = /\r/g,
 	rspaces = /[\x20\t\r\n\f]+/g;
+=======
+var rreturn = /\r/g;
+>>>>>>> 91ff6ce268b677ddbdd9a857546da016024c8421
 
 jQuery.fn.extend( {
 	val: function( value ) {
@@ -81,6 +85,7 @@ jQuery.extend( {
 		option: {
 			get: function( elem ) {
 
+<<<<<<< HEAD
 				var val = jQuery.find.attr( elem, "value" );
 				return val != null ?
 					val :
@@ -90,6 +95,11 @@ jQuery.extend( {
 					// Strip and collapse whitespace
 					// https://html.spec.whatwg.org/#strip-and-collapse-whitespace
 					jQuery.trim( jQuery.text( elem ) ).replace( rspaces, " " );
+=======
+				// Support: IE<11
+				// option.value not trimmed (#14858)
+				return jQuery.trim( elem.value );
+>>>>>>> 91ff6ce268b677ddbdd9a857546da016024c8421
 			}
 		},
 		select: {
@@ -142,7 +152,11 @@ jQuery.extend( {
 				while ( i-- ) {
 					option = options[ i ];
 					if ( option.selected =
+<<<<<<< HEAD
 						jQuery.inArray( jQuery.valHooks.option.get( option ), values ) > -1
+=======
+							jQuery.inArray( jQuery.valHooks.option.get( option ), values ) > -1
+>>>>>>> 91ff6ce268b677ddbdd9a857546da016024c8421
 					) {
 						optionSet = true;
 					}

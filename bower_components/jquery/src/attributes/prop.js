@@ -79,12 +79,15 @@ jQuery.extend( {
 	}
 } );
 
+<<<<<<< HEAD
 // Support: IE <=11 only
 // Accessing the selectedIndex property
 // forces the browser to respect setting selected
 // on the option
 // The getter ensures a default option is selected
 // when in an optgroup
+=======
+>>>>>>> 91ff6ce268b677ddbdd9a857546da016024c8421
 if ( !support.optSelected ) {
 	jQuery.propHooks.selected = {
 		get: function( elem ) {
@@ -93,6 +96,7 @@ if ( !support.optSelected ) {
 				parent.parentNode.selectedIndex;
 			}
 			return null;
+<<<<<<< HEAD
 		},
 		set: function( elem ) {
 			var parent = elem.parentNode;
@@ -103,6 +107,8 @@ if ( !support.optSelected ) {
 					parent.parentNode.selectedIndex;
 				}
 			}
+=======
+>>>>>>> 91ff6ce268b677ddbdd9a857546da016024c8421
 		}
 	};
 }

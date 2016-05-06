@@ -164,7 +164,11 @@ jQuery.extend( jQuery.event, {
 				// But now, this "simulate" function is used only for events
 				// for which stopPropagation() is noop, so there is no need for that anymore.
 				//
+<<<<<<< HEAD
 				// For the 1.x branch though, guard for "click" and "submit"
+=======
+				// For the compat branch though, guard for "click" and "submit"
+>>>>>>> 91ff6ce268b677ddbdd9a857546da016024c8421
 				// events is still used, but was moved to jQuery.event.stopPropagation function
 				// because `originalEvent` should point to the original event for the constancy
 				// with other events and for more focused logic
